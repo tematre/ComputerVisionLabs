@@ -21,7 +21,7 @@
        <enum>Qt::PreventContextMenu</enum>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -50,6 +50,26 @@
        <layout class="QVBoxLayout" name="verticalLayout_3">
         <item>
          <widget class="Third" name="widget_3" native="true"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_4">
+       <attribute name="title">
+        <string>Fourth</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
+         <widget class="Fourth" name="widget_4" native="true"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_5">
+       <attribute name="title">
+        <string>Fifth</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_5">
+        <item>
+         <widget class="Fifth" name="widget_5" native="true"/>
         </item>
        </layout>
       </widget>
@@ -95,6 +115,18 @@
    <class>Third</class>
    <extends>QWidget</extends>
    <header>third.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Fourth</class>
+   <extends>QWidget</extends>
+   <header>fourth.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Fifth</class>
+   <extends>QWidget</extends>
+   <header>fifth.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

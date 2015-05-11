@@ -84,7 +84,7 @@ void Second::init(const QString& imagePath)
 
     cv::Mat gray;
 
-    const int BINS = 8;
+    const int BINS = 9;
 
 
 

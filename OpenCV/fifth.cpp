@@ -98,19 +98,19 @@ void Fifth::init(const QString& imagePath)
     cout << corners.size() << endl;
     cout << detected.size() << endl;
 
-//    solvePnP(corners, detected, cam_matrix, distCoeffs, rvect, tvect);
+    solvePnP(corners, detected, cam_matrix, distCoeffs, rvect, tvect);
     vector<Point2f> projectedPoints;
     vector<Point3f> pts;
-    pts.push_back(Point3d(0, 0, 0));
-    pts.push_back(Point3d(1, 0, 0));
-    pts.push_back(Point3d(0, 1, 0));
-    pts.push_back(Point3d(0, 0, 1));
+    pts.push_back(Point3d(5, 5, 5));
+    pts.push_back(Point3d(6, 5, 5));
+    pts.push_back(Point3d(5, 6, 5));
+    pts.push_back(Point3d(5, 5, 4));
 
     projectPoints(pts, rvect, tvect, cam_matrix, distCoeffs, projectedPoints);
     vector<Point> basis;
 
-    line(src, projectedPoints[0], projectedPoints[1], (255, 255, 255), 3);
-    line(src, projectedPoints[0], projectedPoints[2], (0, 0, 255), 3);
+    line(src, projectedPoints[0], projectedPoints[1], (255, 0, 0), 3);
+    line(src, projectedPoints[0], projectedPoints[2], (0, 255, 0), 3);
     line(src, projectedPoints[0], projectedPoints[3], (0, 0, 255), 3);
 
 

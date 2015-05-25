@@ -1,5 +1,15 @@
 #include "opencvbridge.h"
 QImage OpenCvBridge::Mat2QImage(const cv::Mat& inMat) {
+
+    static QVector<QRgb>  sColorTable;
+
+    // only create our color table once
+    if ( sColorTable.isEmpty() )
+    {
+       for ( int i = 0; i < 256; ++i )
+          sColorTable.push_back( qRgb( i, i, i ) );
+    }
+
     switch ( inMat.type() )
           {
              // 8-bit, 4 channel
@@ -21,22 +31,38 @@ QImage OpenCvBridge::Mat2QImage(const cv::Mat& inMat) {
              // 8-bit, 1 channel
              case CV_8UC1:
              {
-                static QVector<QRgb>  sColorTable;
+                cv::Mat temp;
+                inMat.convertTo(temp, CV_8UC1, 255);
 
-                // only create our color table once
-                if ( sColorTable.isEmpty() )
-                {
-                   for ( int i = 0; i < 256; ++i )
-                      sColorTable.push_back( qRgb( i, i, i ) );
-                }
+                QImage image( temp.data, temp.cols, temp.rows, temp.step, QImage::Format_Indexed8 );
 
-                QImage image( inMat.data, inMat.cols, inMat.rows, inMat.step, QImage::Format_Indexed8 );
+                //image.setColorTable( sColorTable );
 
-                image.setColorTable( sColorTable );
-
-                return image;
+                return image.rgbSwapped();
              }
+             case CV_32FC1:
+             {
+                cv::Mat temp;
+                //cv::cvtColor(inMat,temp,CV_GRAY2RGB);
 
+                inMat.convertTo(temp, CV_8UC1, 255);
+
+                QImage image( temp.data, temp.cols, temp.rows, temp.step, QImage::Format_Indexed8 );
+
+                //image.setColorTable( sColorTable );
+
+                return image.rgbSwapped();
+             }
+             case CV_32FC3:
+             {
+                cv::Mat temp = cv::Mat(inMat.size(),CV_8UC3);
+                inMat.convertTo(temp, CV_8UC3, 255);
+
+                QImage image( temp.data, temp.cols, temp.rows, temp.step, QImage::Format_RGB888 );
+               ;
+
+               return image.rgbSwapped();
+             }
              default:
 
                 break;

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>544</width>
+    <height>350</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,7 +21,7 @@
        <enum>Qt::PreventContextMenu</enum>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>5</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -73,6 +73,36 @@
         </item>
        </layout>
       </widget>
+      <widget class="QWidget" name="tab_6">
+       <attribute name="title">
+        <string>Sixth</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_6">
+        <item>
+         <widget class="Sixth" name="widget_6" native="true"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_7">
+       <attribute name="title">
+        <string>Seventh</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_7">
+        <item>
+         <widget class="Seventh" name="widget_7" native="true"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_8">
+       <attribute name="title">
+        <string>Eighth</string>
+       </attribute>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="Eighth" name="widget_8" native="true"/>
+        </item>
+       </layout>
+      </widget>
      </widget>
     </item>
    </layout>
@@ -82,7 +112,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>400</width>
+     <width>544</width>
      <height>21</height>
     </rect>
    </property>
@@ -127,6 +157,24 @@
    <class>Fifth</class>
    <extends>QWidget</extends>
    <header>fifth.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Sixth</class>
+   <extends>QWidget</extends>
+   <header>sixth.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Seventh</class>
+   <extends>QWidget</extends>
+   <header>seventh.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Eighth</class>
+   <extends>QWidget</extends>
+   <header>eighth.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

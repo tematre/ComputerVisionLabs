@@ -12,6 +12,7 @@
 
 #include <QFileDialog>
 #include <QMessageBox>
+#include <qmath.h>
 
 Fourth::Fourth(QWidget *parent) :
     QWidget(parent),
@@ -92,25 +93,45 @@ void Fourth::init(const QString& imagePath)
 
     matcher.radiusMatch(src_dist, dst_dist, matches, 64);
 
+    double minDist = DBL_MAX;
     for (int i = 0; i < matches.size(); i++)
     {
-        cv::DMatch v1;
-        cv::DMatch v2;
-
-        if (matches[i].size() >= 2)
+        for(int j = 0; j < matches[i].size(); ++j)
         {
-            v1 = matches[i][0];
-            v2 = matches[i][1];
-            if (v1.distance>0.7*v2.distance)
+            if( matches[i][j].distance < minDist)
             {
-                Draw_matches.push_back(v1);
+                minDist = matches[i][j].distance;
             }
         }
+
     }
+    for (int i = 0; i < matches.size(); i++)
+    {
+        double locMax = DBL_MIN;
+        for(int j = 0; j < matches[i].size(); ++j)
+        {
+            for(int j = 0; j < matches[i].size(); ++j)
+            {
+                if( matches[i][j].distance > locMax)
+                {
+                    locMax = matches[i][j].distance;
+                }
+            }
+
+        }
+        if ( matches[i].size() != 0 && locMax <= qMax(3*minDist, 0.05))
+        {
+
+            Draw_matches.push_back(matches[i][0]);
+
+        }
+
+    }
+
 
     cv::Mat img_matheces;
 
-    cv::drawMatches(src, keysPoins, dst, dstkeysPoins, matches, img_matheces);
+    cv::drawMatches(src, keysPoins, dst, dstkeysPoins, Draw_matches, img_matheces);
 
 
     ui->FullImageLabel->setPixmap(QPixmap::fromImage(OpenCvBridge::Mat2QImage(img_matheces)));

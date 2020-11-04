@@ -52,7 +52,8 @@ cv::Mat Eighth::getMu(const std::vector<std::vector<float> >& data)
 }
 cv::Mat Eighth::getC(const std::vector<std::vector<float> >& data, const cv::Mat& mu)
 {
-    cv::Mat C = cv::Mat::zeros(7, 7, CV_32FC1);
+    cv::Mat C = cv::Mat::zeros(7, 7, CV_32FC1); 
+    
         for(int i = 0; i < data.size(); i++)
         {
             C = C + cv::Mat_<float>((cv::Mat(data[i]) - mu)) *cv::Mat_<float>(cv::Mat(data[i]) - mu).t();
